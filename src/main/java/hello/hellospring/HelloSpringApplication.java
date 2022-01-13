@@ -12,4 +12,5 @@ public class HelloSpringApplication {
 	}
 
 }
+//ctrl(command) + e: 최근파일목록
 
