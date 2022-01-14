@@ -15,13 +15,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest //스프링 통합 테스트
-@Transactional //shift + f10 이전 실행 재실행
+@Transactional //shift + f10 이전 실행 재실행,  테스트 끝나면 롤백하는 에노테이션
 class MemberServiceIntegrationTest {
 //ctrl + alt + 방향키 뷰전환
     @Autowired MemberService memberService;
     @Autowired
     MemberRepository memberRepository; //테스트니까 오토와이월드
 
+//jpa는 인터페이스, hibernate는 구현 라이브러리
     @Test
     public void 회원가입() throws Exception { //테스트는 한글 가능
     //given
@@ -33,6 +34,7 @@ class MemberServiceIntegrationTest {
 
     //then 결과
         Member findMember = memberService.findOne(saveId).get();
+        //Member findMember = memberRepository.findById(saveId).get();
         assertEquals(member.getName(), findMember.getName());
     }
 
